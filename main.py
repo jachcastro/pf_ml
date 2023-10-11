@@ -2,9 +2,25 @@ import streamlit as st
 import pandas as pd
  
 st.write("""
-# My first app
-Hello *world!*
+# Recomendacion de negocios 
+Somos *JL3*
 """)
  
-# df = pd.read_csv("my_data.csv")
-# st.line_chart(df)
+
+# Cargar el archivo CSV
+@st.cache  # Usamos la caché de Streamlit para evitar la recarga constante del CSV
+def load_data():
+    data = pd.read_csv("categoria.csv")
+    return data
+
+# Título de la aplicación
+st.title('Categoria ....')
+
+# Cargar los datos desde el archivo CSV
+data = load_data()
+
+# Widget ComboBox para seleccionar una categoría
+selected_category = st.selectbox("Selecciona una categoría:", data["categoria"])
+
+# Mostrar la categoría seleccionada
+st.write("Categoría seleccionada:", selected_category)
