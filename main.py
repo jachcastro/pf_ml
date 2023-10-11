@@ -20,6 +20,7 @@ st.title("JL3")
 
 # Crear un menú lateral
 st.sidebar.header("Alternativas")
+st.sidebar.markdown("### Menú Lateral")
 
 # Opciones del menú
 selected_option = st.sidebar.radio("Selecciona una opción", ["Inicio", "Para los Usuarios", "Para los Negocios","Para los Inversionistas" ])
