@@ -23,19 +23,19 @@ st.sidebar.header("Alternativas")
 st.sidebar.markdown("### Menú Lateral")
 
 # Opciones del menú
-# selected_option = st.sidebar.radio("Selecciona una opción", ["Inicio", "Para los Usuarios", "Para los Negocios","Para los Inversionistas" ])
+selected_option = st.sidebar.radio("Selecciona una opción", ["Inicio", "Para los Usuarios", "Para los Negocios","Para los Inversionistas" ])
 
 # Contenido principal basado en la opción seleccionada
-if st.sidebar.button == "Inicio":
+if selected_option == "Inicio":
     st.write("""
     # Proyecto de Recomendaciones  
     ## Somos JL3
     """)
-elif st.sidebar.button == "Para los Usuarios":
+elif selected_option == "Para los Usuarios":
     st.write("Aquí puedes configurar tus preferencias.")
-elif st.sidebar.button == "Para los Negocios":
+elif selected_option == "Para los Negocios":
     st.write("Puedes obtener ayuda y soporte aquí.")
-elif st.sidebar.button == "Para los Inversionistas":
+elif selected_option == "Para los Inversionistas":
     st.write("#Inversionistas")
     # Widget ComboBox para seleccionar una categoría
     selected_category = st.selectbox("Selecciona una categoría:", data["categoria"])
