@@ -14,7 +14,7 @@ st.title('Protecto de Recomendaciones')
 
 # Agregar un logotipo en el menú lateral
 logo_path = "scr/LogoJL3.png"  # Reemplaza con la ruta a tu imagen de logotipo
-st.image(logo_path, use_container_width=True)
+st.sidebar.image(logo_path, use_container_width=True)
 
 # Crear un menú lateral
 st.sidebar.header("Alternativas")
