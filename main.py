@@ -10,7 +10,7 @@ def load_data():
 data = load_data()
 
 # Título de la aplicación
-st.title('Protecto de Recomendaciones')
+st.title('Proyecto de Recomendaciones... ejemplo en vivo')
 
 # Agregar un logotipo en el menú lateral
 # logo_path = "scr/LogoJL3.png"  # Reemplaza con la ruta a tu imagen de logotipo
