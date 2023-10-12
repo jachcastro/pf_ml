@@ -26,7 +26,6 @@ selected_option = st.sidebar.radio("Selecciona una opción", ["Inicio", "Para lo
 # Contenido principal basado en la opción seleccionada
 if selected_option == "Inicio":
     st.write("""
-    # Proyecto de Recomendaciones  
     ## Somos JL3
     """)
 elif selected_option == "Para los Usuarios":
