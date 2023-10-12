@@ -6,17 +6,15 @@ import pandas as pd
 def load_data():
     data = pd.read_csv("categoria.csv")
     return data
-
-# Título de la aplicación
-st.title('Categoria ....')
-
 # Cargar los datos desde el archivo CSV
 data = load_data()
 
-import streamlit as st
+# Título de la aplicación
+st.title('Protecto de Recomendaciones')
 
-# Configuración del título
-st.title("JL3")
+# Agregar un logotipo en el menú lateral
+logo_path = "scr/LogoJL3.png"  # Reemplaza con la ruta a tu imagen de logotipo
+st.image(logo_path, use_container_width=True)
 
 # Crear un menú lateral
 st.sidebar.header("Alternativas")
