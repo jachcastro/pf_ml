@@ -32,6 +32,7 @@ elif selected_option == "Para los Usuarios":
     st.write("Aquí puedes configurar tus preferencias.")
 elif selected_option == "Para los Negocios":
     st.write("Puedes obtener ayuda y soporte aquí.")
+    number = st.slider("Estrellas", 0, 5)
 elif selected_option == "Para los Inversionistas":
     st.write("#Inversionistas")
     # Widget ComboBox para seleccionar una categoría
