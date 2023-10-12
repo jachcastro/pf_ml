@@ -1,3 +1,5 @@
+pip install streamlit-extras
+
 import streamlit as st
 import streamlit_extras
 import pandas as pd
