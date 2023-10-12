@@ -1,8 +1,9 @@
 import streamlit as st
+import streamlit_extras
 import pandas as pd
-from streamlit_toggle import st_toggle_switch
+from streamlit_extras.stoggle import stoggle
 
- 
+
 # Cargar el archivo CSV
 @st.cache  # Usamos la caché de Streamlit para evitar la recarga constante del CSV
 def load_data():
@@ -32,15 +33,9 @@ if selected_option == "Inicio":
     """)
 elif selected_option == "Para los Usuarios":
     st.write("Para que los usuarios evalueen")
-    st.write("## Toggle Switch")
-    st_toggle_switch(
-        label="Con estacionamiento",
-        key="switch_1",
-        default_value=True,
-        label_after=True,
-        inactive_color="#D3D3D3",  # optional
-        active_color="#11567f",  # optional
-        track_color="#29B5E8",  # optional
+    stoggle(
+        "Click me!",
+        """🥷 Surprise! Here's some additional content""",
     )
 elif selected_option == "Para los Negocios":
     st.write("Puedes obtener ayuda y soporte aquí.")
