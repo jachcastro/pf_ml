@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+from streamlit_toggle import st_toggle_switch
+
  
 # Cargar el archivo CSV
 @st.cache  # Usamos la caché de Streamlit para evitar la recarga constante del CSV
@@ -29,7 +31,17 @@ if selected_option == "Inicio":
     ## Somos JL3
     """)
 elif selected_option == "Para los Usuarios":
-    st.write("Aquí puedes configurar tus preferencias.")
+    st.write("Para que los usuarios evalueen")
+    st.write("## Toggle Switch")
+    st_toggle_switch(
+        label="Con estacionamiento",
+        key="switch_1",
+        default_value=True,
+        label_after=True,
+        inactive_color="#D3D3D3",  # optional
+        active_color="#11567f",  # optional
+        track_color="#29B5E8",  # optional
+    )
 elif selected_option == "Para los Negocios":
     st.write("Puedes obtener ayuda y soporte aquí.")
     number = st.slider("Estrellas", 0, 5)
