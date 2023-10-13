@@ -1,48 +1,54 @@
 import streamlit as st
-import pandas as pd
-from streamlit_extras.stoggle import stoggle
+from streamlit_option_menu import option_menu
+import inicio, usuarios, negocios, inversionistas, acercade
+st.set_page_config(
+        page_title="JL3",
+)
 
 
-# Cargar el archivo CSV
-@st.cache  # Usamos la caché de Streamlit para evitar la recarga constante del CSV
-def load_data():
-    data = pd.read_csv("categoria.csv")
-    return data
-# Cargar los datos desde el archivo CSV
-data = load_data()
 
-# Título de la aplicación
-st.title('Proyecto de Recomendaciones... ejemplo en vivo')
+class MultiApp:
 
-# Agregar un logotipo en el menú lateral
-# logo_path = "scr/LogoJL3.png"  # Reemplaza con la ruta a tu imagen de logotipo
-# st.sidebar.image(logo_path, use_container_width=True)
+    def __init__(self):
+        self.apps = []
 
-# Crear un menú lateral
-st.sidebar.header("Alternativas")
-st.sidebar.markdown("### Menú Lateral")
+    def add_app(self, title, func):
 
-# Opciones del menú
-selected_option = st.sidebar.radio("Selecciona una opción", ["Inicio", "Para los Usuarios", "Para los Negocios","Para los Inversionistas" ])
+        self.apps.append({
+            "title": title,
+            "function": func
+        })
 
-# Contenido principal basado en la opción seleccionada
-if selected_option == "Inicio":
-    st.write("""
-    ## Somos JL3
-    """)
-elif selected_option == "Para los Usuarios":
-    st.write("Para que los usuarios evalueen")
-    stoggle(
-        "Click me!",
-        """🥷 Surprise! Here's some additional content""",
-    )
-elif selected_option == "Para los Negocios":
-    st.write("Puedes obtener ayuda y soporte aquí.")
-    number = st.slider("Estrellas", 0, 5)
-elif selected_option == "Para los Inversionistas":
-    st.write("#Inversionistas")
-    # Widget ComboBox para seleccionar una categoría
-    selected_category = st.selectbox("Selecciona una categoría:", data["categoria"])
+    def run():
+        # app = st.sidebar(
+        with st.sidebar:        
+            app = option_menu(
+                menu_title='JL3 ',
+                options=['inicio','usuarios','negocios','inversionistas','acerca de'],
+                icons=['house-fill','person-circle','person-circle','person-circle','info-circle-fill'],
+                menu_icon='chat-text-fill',
+                default_index=0,
+                styles={
+                    "container": {"padding": "5!important","background-color":'black'},
+        "icon": {"color": "white", "font-size": "23px"}, 
+        "nav-link": {"color":"white","font-size": "20px", "text-align": "left", "margin":"0px", "--hover-color": "blue"},
+        "nav-link-selected": {"background-color": "#02ab21"},}
+                
+                )
 
-    # Mostrar la categoría seleccionada
-    st.write("Categoría seleccionada:", selected_category)
+        
+        if app == "inicio":
+            inicio.app()
+        if app == "negocios":
+            negocios.app()    
+        if app == "usuarios":
+            usuarios.app()        
+        if app == 'inversionistas':
+            inversionistas.app()
+        if app == 'acerca de':
+            acercade.app()    
+             
+          
+             
+    run()            
+         
