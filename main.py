@@ -1,11 +1,10 @@
+import inicio, usuarios, negocios, inversionistas, acercade
 import streamlit as st
 from streamlit_option_menu import option_menu
-import inicio, usuarios, negocios, inversionistas, acercade
+
 st.set_page_config(
         page_title="JL3",
 )
-
-
 
 class MultiApp:
 
