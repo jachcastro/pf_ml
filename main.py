@@ -1,4 +1,4 @@
-import inicio, usuarios, negocios, inversionistas, acercade
+import inicio, usuarios, usuarios2, negocios, inversionistas, acercade
 import streamlit as st
 from streamlit_option_menu import option_menu
 
@@ -23,7 +23,7 @@ class MultiApp:
         with st.sidebar:        
             app = option_menu(
                 menu_title='JL3 ',
-                options=['inicio','usuarios','negocios','inversionistas','acerca de'],
+                options=['inicio','usuarios ml 1','usuarios ml 2','negocios','inversionistas','acerca de'],
                 icons=['house-fill','person-circle','person-circle','person-circle','info-circle-fill'],
                 menu_icon='chat-text-fill',
                 default_index=0,
@@ -40,8 +40,10 @@ class MultiApp:
             inicio.app()
         if app == "negocios":
             negocios.app()    
-        if app == "usuarios":
+        if app == "usuarios ml 1":
             usuarios.app()        
+        if app == "usuarios ml 2":
+            usuarios2.app()        
         if app == 'inversionistas':
             inversionistas.app()
         if app == 'acerca de':
