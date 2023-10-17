@@ -6,7 +6,6 @@ from transformers import BertTokenizer, BertForSequenceClassification
 from torch.nn.functional import softmax
 
 # Cargar el modelo y el tokenizador
-model_path = "modelo/modelo_bert_review_sentimiento_colab.pth"  # Asegúrate de que sea la ruta correcta a tu modelo
 tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
 model = BertForSequenceClassification.from_pretrained('bert-base-cased')
 
