@@ -11,21 +11,23 @@ model = BertForSequenceClassification.from_pretrained('bert-base-cased')
 
 # Definir la función para la clasificación de sentimiento
 def classifySentiment(review_text):
-
     # Tokenizar el texto
-    encoding_review = tokenizer(review_text, return_tensors="pt")
+    inputs = tokenizer(review_text, return_tensors="pt", padding=True, truncation=True)
 
-
-    # Realizar la inferencia en el modelo
+    # Realizar la clasificación de sentimientos
     with torch.no_grad():
-        output = model(**encoding_review)
+        outputs = model(**inputs)
+        logits = outputs.logits
 
-    # Calcular las probabilidades y la etiqueta de sentimiento
-    probabilities = softmax(output.logits, dim=1)
-    sentiment_label = "Positivo" if probabilities[0][1] > probabilities[0][0] else "Negativo"
+    # Calcular las probabilidades de clase
+    probs = softmax(logits, dim=1)
+    label = torch.argmax(probs, dim=1)
 
-    sentiment_label
-    
+    # Decodificar la etiqueta
+    class_names = ["Negativo", "Positivo"]
+    sentiment = class_names[label]    
+    return sentiment
+
 def app():
     # Cargar y mostrar la imagen
     st.title('Opciones para usuarios')
