@@ -83,9 +83,9 @@ def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
 
 def app():
     # Cargar y mostrar la imagen
-    st.title('Opciones para negocios')
+    st.title('Opciones de Negocios')
     st.header('Proyecto Yelp & Google Maps')
-    st.subheader('Propuestas de negocios')
+    st.subheader('Informacion de Negocios')
     st.subheader('Filtros')
     data_url = "data/Datasets_ML_NuevosDatasetsML_Consolidado_Businees_Review_Tip.parquet"
 

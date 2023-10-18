@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_813fe4923091aaa3c579305727b54c43 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>
+    
+    <h3 align="center" style="font-size:16px"><b>Proyecto Yelp & Google Maps - Reseñas y Recomendaciones </br> Proyecto Final Grupo Nº 7 </br>Recomendación Proyectos de Inversión </br>@utores: Javier Castro, Luca Ramallo, Luis Ramírez, Lesmen García</b></h3>
+    
+            <div class="folium-map" id="map_813fe4923091aaa3c579305727b54c43" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_813fe4923091aaa3c579305727b54c43 = L.map(
+                "map_813fe4923091aaa3c579305727b54c43",
+                {
+                    center: [35.73709674179, -96.32789021147501],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 7,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+            L.control.scale().addTo(map_813fe4923091aaa3c579305727b54c43);
+
+            
+
+        
+    
+            var tile_layer_aad48ea5bd2e3413a5e691e01a1ab439 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_813fe4923091aaa3c579305727b54c43);
+        
+    
+            var marker_cluster_ceedff89b962a828bf725e8c4af446e4 = L.markerClusterGroup(
+                {}
+            );
+            map_813fe4923091aaa3c579305727b54c43.addLayer(marker_cluster_ceedff89b962a828bf725e8c4af446e4);
+        
+    
+            var marker_ae2412b4ba93d4e69ff4e6571dd51881 = L.marker(
+                [38.6351465972, -90.2240032723],
+                {}
+            ).addTo(marker_cluster_ceedff89b962a828bf725e8c4af446e4);
+        
+    
+            var icon_bd9f487356c64fd447617f13652d87f8 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_ae2412b4ba93d4e69ff4e6571dd51881.setIcon(icon_bd9f487356c64fd447617f13652d87f8);
+        
+    
+        var popup_1e46803eb2daebcd134cc20858df80a6 = L.popup({"maxWidth": 450, "minWidth": 300});
+
+        
+            
+                var html_158572158ddc6b18eb05b4dcf436ded5 = $(`<div id="html_158572158ddc6b18eb05b4dcf436ded5" style="width: 100.0%; height: 100.0%;">Name: <strong>Pappy's Smokehouse</strong></br>    City: <strong>Saint Louis</strong></br>     Address: <strong>3106 Olive St</strong></br>     State: <strong>LA</strong></br>     latitude: <strong>38.6351465972</strong></br>     longitude: <strong>-90.2240032723</strong></br>     </br></div>`)[0];
+                popup_1e46803eb2daebcd134cc20858df80a6.setContent(html_158572158ddc6b18eb05b4dcf436ded5);
+            
+        
+
+        marker_ae2412b4ba93d4e69ff4e6571dd51881.bindPopup(popup_1e46803eb2daebcd134cc20858df80a6)
+        ;
+
+        
+    
+    
+            marker_ae2412b4ba93d4e69ff4e6571dd51881.bindTooltip(
+                `<div>
+                     Name: <strong>Pappy's Smokehouse</strong></br>     City: <strong>Saint Louis</strong></br>     Address: <strong>3106 Olive St</strong></br>     State: <strong>LA</strong></br>      Categorias: <strong>Food</strong></br>     SubCategorias: <strong>Food,  Caterers</strong></br>     Total_Estrellas: <strong>4093</strong></br>     Total_CincoEstrellas: <strong>2675</strong></br>     T_S_P_Review: <strong>3942</strong></br>     Total_useful: <strong>2754</strong></br>     Total_funny: <strong>1295</strong></br>     Total_cool: <strong>1870</strong></br>     T_S_P_Tip: <strong>0</strong></br>     </br> 
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_09feab5775103de15fe8b3bd4bf13569 = L.marker(
+                [38.673459, -90.367448],
+                {}
+            ).addTo(marker_cluster_ceedff89b962a828bf725e8c4af446e4);
+        
+    
+            var icon_96e9f45c3792101ae151dc9cd3232205 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_09feab5775103de15fe8b3bd4bf13569.setIcon(icon_96e9f45c3792101ae151dc9cd3232205);
+        
+    
+        var popup_fcd8a9d5584ced3547de3be99d2f9553 = L.popup({"maxWidth": 450, "minWidth": 300});
+
+        
+            
+                var html_0fa57d9cc89bea96f967cd3cba638841 = $(`<div id="html_0fa57d9cc89bea96f967cd3cba638841" style="width: 100.0%; height: 100.0%;">Name: <strong>Sugarfire Smoke House</strong></br>    City: <strong>Saint Louis</strong></br>     Address: <strong>9200 Olive Blvd</strong></br>     State: <strong>NJ</strong></br>     latitude: <strong>38.673459</strong></br>     longitude: <strong>-90.367448</strong></br>     </br></div>`)[0];
+                popup_fcd8a9d5584ced3547de3be99d2f9553.setContent(html_0fa57d9cc89bea96f967cd3cba638841);
+            
+        
+
+        marker_09feab5775103de15fe8b3bd4bf13569.bindPopup(popup_fcd8a9d5584ced3547de3be99d2f9553)
+        ;
+
+        
+    
+    
+            marker_09feab5775103de15fe8b3bd4bf13569.bindTooltip(
+                `<div>
+                     Name: <strong>Sugarfire Smoke House</strong></br>     City: <strong>Saint Louis</strong></br>     Address: <strong>9200 Olive Blvd</strong></br>     State: <strong>NJ</strong></br>      Categorias: <strong>Food</strong></br>     SubCategorias: <strong> Food,  Barbeque</strong></br>     Total_Estrellas: <strong>1705</strong></br>     Total_CincoEstrellas: <strong>971</strong></br>     T_S_P_Review: <strong>1620</strong></br>     Total_useful: <strong>1304</strong></br>     Total_funny: <strong>462</strong></br>     Total_cool: <strong>752</strong></br>     T_S_P_Tip: <strong>0</strong></br>     </br> 
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_272ac865aeca1d51722b29d22bc4cb88 = L.marker(
+                [29.958250171, -90.0629232394],
+                {}
+            ).addTo(marker_cluster_ceedff89b962a828bf725e8c4af446e4);
+        
+    
+            var icon_d4d63f718859e29d48d7d5000fa124b6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_272ac865aeca1d51722b29d22bc4cb88.setIcon(icon_d4d63f718859e29d48d7d5000fa124b6);
+        
+    
+        var popup_7dbc9b1f9c5640e522606bf8c174a7fc = L.popup({"maxWidth": 450, "minWidth": 300});
+
+        
+            
+                var html_a0a8a793a13ba41780356aeaefa30ca0 = $(`<div id="html_a0a8a793a13ba41780356aeaefa30ca0" style="width: 100.0%; height: 100.0%;">Name: <strong>Stanley</strong></br>    City: <strong>New Orleans</strong></br>     Address: <strong>547 Saint Ann St</strong></br>     State: <strong>MO</strong></br>     latitude: <strong>29.958250171</strong></br>     longitude: <strong>-90.0629232394</strong></br>     </br></div>`)[0];
+                popup_7dbc9b1f9c5640e522606bf8c174a7fc.setContent(html_a0a8a793a13ba41780356aeaefa30ca0);
+            
+        
+
+        marker_272ac865aeca1d51722b29d22bc4cb88.bindPopup(popup_7dbc9b1f9c5640e522606bf8c174a7fc)
+        ;
+
+        
+    
+    
+            marker_272ac865aeca1d51722b29d22bc4cb88.bindTooltip(
+                `<div>
+                     Name: <strong>Stanley</strong></br>     City: <strong>New Orleans</strong></br>     Address: <strong>547 Saint Ann St</strong></br>     State: <strong>MO</strong></br>      Categorias: <strong>Food</strong></br>     SubCategorias: <strong> Food, Breakfast & Brunch</strong></br>     Total_Estrellas: <strong>2440</strong></br>     Total_CincoEstrellas: <strong>945</strong></br>     T_S_P_Review: <strong>2235</strong></br>     Total_useful: <strong>1840</strong></br>     Total_funny: <strong>756</strong></br>     Total_cool: <strong>1140</strong></br>     T_S_P_Tip: <strong>0</strong></br>     </br> 
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_180821142a437507390f116fa8ce38d8 = L.marker(
+                [39.5186223455, -119.8088910484],
+                {}
+            ).addTo(marker_cluster_ceedff89b962a828bf725e8c4af446e4);
+        
+    
+            var icon_8b1a66d80e7e14cefcd6310311fc89e8 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_180821142a437507390f116fa8ce38d8.setIcon(icon_8b1a66d80e7e14cefcd6310311fc89e8);
+        
+    
+        var popup_a33c6754bf981605c6278fd3dbb68a6b = L.popup({"maxWidth": 450, "minWidth": 300});
+
+        
+            
+                var html_bffed417618758705b9e92f65600f871 = $(`<div id="html_bffed417618758705b9e92f65600f871" style="width: 100.0%; height: 100.0%;">Name: <strong>Two Chicks</strong></br>    City: <strong>Reno</strong></br>     Address: <strong>752 S Virginia St</strong></br>     State: <strong>PA</strong></br>     latitude: <strong>39.5186223455</strong></br>     longitude: <strong>-119.8088910484</strong></br>     </br></div>`)[0];
+                popup_a33c6754bf981605c6278fd3dbb68a6b.setContent(html_bffed417618758705b9e92f65600f871);
+            
+        
+
+        marker_180821142a437507390f116fa8ce38d8.bindPopup(popup_a33c6754bf981605c6278fd3dbb68a6b)
+        ;
+
+        
+    
+    
+            marker_180821142a437507390f116fa8ce38d8.bindTooltip(
+                `<div>
+                     Name: <strong>Two Chicks</strong></br>     City: <strong>Reno</strong></br>     Address: <strong>752 S Virginia St</strong></br>     State: <strong>PA</strong></br>      Categorias: <strong>Food</strong></br>     SubCategorias: <strong> Food,  Breakfast & Brunch</strong></br>     Total_Estrellas: <strong>1549</strong></br>     Total_CincoEstrellas: <strong>931</strong></br>     T_S_P_Review: <strong>1459</strong></br>     Total_useful: <strong>1788</strong></br>     Total_funny: <strong>371</strong></br>     Total_cool: <strong>1221</strong></br>     T_S_P_Tip: <strong>0</strong></br>     </br> 
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_2b97c923c41334befb57db52c92d4b7f = L.marker(
+                [27.948891, -82.459164],
+                {}
+            ).addTo(marker_cluster_ceedff89b962a828bf725e8c4af446e4);
+        
+    
+            var icon_79b8c02d64efe16018afacb084d17be1 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_2b97c923c41334befb57db52c92d4b7f.setIcon(icon_79b8c02d64efe16018afacb084d17be1);
+        
+    
+        var popup_74abc8e1e103259428ca63e3ded680a9 = L.popup({"maxWidth": 450, "minWidth": 300});
+
+        
+            
+                var html_53a1a96c8b34899221f7d85d864e6914 = $(`<div id="html_53a1a96c8b34899221f7d85d864e6914" style="width: 100.0%; height: 100.0%;">Name: <strong>Eddie & Sam's NY Pizza</strong></br>    City: <strong>Tampa</strong></br>     Address: <strong>203 E Twiggs St</strong></br>     State: <strong>FL</strong></br>     latitude: <strong>27.948891</strong></br>     longitude: <strong>-82.459164</strong></br>     </br></div>`)[0];
+                popup_74abc8e1e103259428ca63e3ded680a9.setContent(html_53a1a96c8b34899221f7d85d864e6914);
+            
+        
+
+        marker_2b97c923c41334befb57db52c92d4b7f.bindPopup(popup_74abc8e1e103259428ca63e3ded680a9)
+        ;
+
+        
+    
+    
+            marker_2b97c923c41334befb57db52c92d4b7f.bindTooltip(
+                `<div>
+                     Name: <strong>Eddie & Sam's NY Pizza</strong></br>     City: <strong>Tampa</strong></br>     Address: <strong>203 E Twiggs St</strong></br>     State: <strong>FL</strong></br>      Categorias: <strong>Food</strong></br>     SubCategorias: <strong> Food,  Pizza</strong></br>     Total_Estrellas: <strong>1215</strong></br>     Total_CincoEstrellas: <strong>741</strong></br>     T_S_P_Review: <strong>1145</strong></br>     Total_useful: <strong>762</strong></br>     Total_funny: <strong>266</strong></br>     Total_cool: <strong>555</strong></br>     T_S_P_Tip: <strong>0</strong></br>     </br> 
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_b04a107a150516f0e4a751087726691c = L.marker(
+                [39.950759, -75.1748461],
+                {}
+            ).addTo(marker_cluster_ceedff89b962a828bf725e8c4af446e4);
+        
+    
+            var icon_6d1afd19dc68cd2e8976a1da871ba429 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_b04a107a150516f0e4a751087726691c.setIcon(icon_6d1afd19dc68cd2e8976a1da871ba429);
+        
+    
+        var popup_55b878564abece756fc1500902cc5a03 = L.popup({"maxWidth": 450, "minWidth": 300});
+
+        
+            
+                var html_378da5e03f1bda2e2b1ea9836b584048 = $(`<div id="html_378da5e03f1bda2e2b1ea9836b584048" style="width: 100.0%; height: 100.0%;">Name: <strong>Vernick Food & Drink</strong></br>    City: <strong>Philadelphia</strong></br>     Address: <strong>2031 Walnut St</strong></br>     State: <strong>LA</strong></br>     latitude: <strong>39.950759</strong></br>     longitude: <strong>-75.1748461</strong></br>     </br></div>`)[0];
+                popup_55b878564abece756fc1500902cc5a03.setContent(html_378da5e03f1bda2e2b1ea9836b584048);
+            
+        
+
+        marker_b04a107a150516f0e4a751087726691c.bindPopup(popup_55b878564abece756fc1500902cc5a03)
+        ;
+
+        
+    
+    
+            marker_b04a107a150516f0e4a751087726691c.bindTooltip(
+                `<div>
+                     Name: <strong>Vernick Food & Drink</strong></br>     City: <strong>Philadelphia</strong></br>     Address: <strong>2031 Walnut St</strong></br>     State: <strong>LA</strong></br>      Categorias: <strong>Food</strong></br>     SubCategorias: <strong>Food,  Beer</strong></br>     Total_Estrellas: <strong>1049</strong></br>     Total_CincoEstrellas: <strong>704</strong></br>     T_S_P_Review: <strong>1027</strong></br>     Total_useful: <strong>3054</strong></br>     Total_funny: <strong>435</strong></br>     Total_cool: <strong>1698</strong></br>     T_S_P_Tip: <strong>0</strong></br>     </br> 
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_36279e4061cd91e52c279a6e02672341 = L.marker(
+                [39.9514103, -75.1706011],
+                {}
+            ).addTo(marker_cluster_ceedff89b962a828bf725e8c4af446e4);
+        
+    
+            var icon_315290d417cd81503c3dbba1a49e5191 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_36279e4061cd91e52c279a6e02672341.setIcon(icon_315290d417cd81503c3dbba1a49e5191);
+        
+    
+        var popup_f25aa43000a29db79e58d3848f636b3d = L.popup({"maxWidth": 450, "minWidth": 300});
+
+        
+            
+                var html_fcdab8465dbce46032494347d669a266 = $(`<div id="html_fcdab8465dbce46032494347d669a266" style="width: 100.0%; height: 100.0%;">Name: <strong>Cleavers</strong></br>    City: <strong>Philadelphia</strong></br>     Address: <strong>108 S 18th St</strong></br>     State: <strong>NV</strong></br>     latitude: <strong>39.9514103</strong></br>     longitude: <strong>-75.1706011</strong></br>     </br></div>`)[0];
+                popup_f25aa43000a29db79e58d3848f636b3d.setContent(html_fcdab8465dbce46032494347d669a266);
+            
+        
+
+        marker_36279e4061cd91e52c279a6e02672341.bindPopup(popup_f25aa43000a29db79e58d3848f636b3d)
+        ;
+
+        
+    
+    
+            marker_36279e4061cd91e52c279a6e02672341.bindTooltip(
+                `<div>
+                     Name: <strong>Cleavers</strong></br>     City: <strong>Philadelphia</strong></br>     Address: <strong>108 S 18th St</strong></br>     State: <strong>NV</strong></br>      Categorias: <strong>Food</strong></br>     SubCategorias: <strong>Food,  Cocktail Bars</strong></br>     Total_Estrellas: <strong>1324</strong></br>     Total_CincoEstrellas: <strong>698</strong></br>     T_S_P_Review: <strong>1237</strong></br>     Total_useful: <strong>1469</strong></br>     Total_funny: <strong>554</strong></br>     Total_cool: <strong>1046</strong></br>     T_S_P_Tip: <strong>0</strong></br>     </br> 
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_e02605e5b86824eccb7dfc06c70ed451 = L.marker(
+                [34.429169291, -119.6889214927],
+                {}
+            ).addTo(marker_cluster_ceedff89b962a828bf725e8c4af446e4);
+        
+    
+            var icon_de4e5e5e30295340f80c01bfbf55bf01 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_e02605e5b86824eccb7dfc06c70ed451.setIcon(icon_de4e5e5e30295340f80c01bfbf55bf01);
+        
+    
+        var popup_8edfd87e8ed12d09e0e3cab5aa213bdb = L.popup({"maxWidth": 450, "minWidth": 300});
+
+        
+            
+                var html_46eb7b968d4b525c493a1f9078e6ccc7 = $(`<div id="html_46eb7b968d4b525c493a1f9078e6ccc7" style="width: 100.0%; height: 100.0%;">Name: <strong>The Shop Kitchen</strong></br>    City: <strong>Santa Barbara</strong></br>     Address: <strong>730 N Milpas St</strong></br>     State: <strong>AZ</strong></br>     latitude: <strong>34.429169291</strong></br>     longitude: <strong>-119.6889214927</strong></br>     </br></div>`)[0];
+                popup_8edfd87e8ed12d09e0e3cab5aa213bdb.setContent(html_46eb7b968d4b525c493a1f9078e6ccc7);
+            
+        
+
+        marker_e02605e5b86824eccb7dfc06c70ed451.bindPopup(popup_8edfd87e8ed12d09e0e3cab5aa213bdb)
+        ;
+
+        
+    
+    
+            marker_e02605e5b86824eccb7dfc06c70ed451.bindTooltip(
+                `<div>
+                     Name: <strong>The Shop Kitchen</strong></br>     City: <strong>Santa Barbara</strong></br>     Address: <strong>730 N Milpas St</strong></br>     State: <strong>AZ</strong></br>      Categorias: <strong>Food</strong></br>     SubCategorias: <strong> Food, American (New)</strong></br>     Total_Estrellas: <strong>1125</strong></br>     Total_CincoEstrellas: <strong>695</strong></br>     T_S_P_Review: <strong>1040</strong></br>     Total_useful: <strong>834</strong></br>     Total_funny: <strong>300</strong></br>     Total_cool: <strong>499</strong></br>     T_S_P_Tip: <strong>0</strong></br>     </br> 
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_04a854542eca5a6643ebef6e13c86ab0 = L.marker(
+                [32.236675, -110.865028],
+                {}
+            ).addTo(marker_cluster_ceedff89b962a828bf725e8c4af446e4);
+        
+    
+            var icon_c168659d560a0e121e71c3fdad45823d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_04a854542eca5a6643ebef6e13c86ab0.setIcon(icon_c168659d560a0e121e71c3fdad45823d);
+        
+    
+        var popup_37ddb8f6d8c25043fd2e7accb3e5c72f = L.popup({"maxWidth": 450, "minWidth": 300});
+
+        
+            
+                var html_bb5669733ff02850a054f02a70e5d113 = $(`<div id="html_bb5669733ff02850a054f02a70e5d113" style="width: 100.0%; height: 100.0%;">Name: <strong>Serial Grillers</strong></br>    City: <strong>Tucson</strong></br>     Address: <strong>5975 E Speedway Blvd</strong></br>     State: <strong>FL</strong></br>     latitude: <strong>32.236675</strong></br>     longitude: <strong>-110.865028</strong></br>     </br></div>`)[0];
+                popup_37ddb8f6d8c25043fd2e7accb3e5c72f.setContent(html_bb5669733ff02850a054f02a70e5d113);
+            
+        
+
+        marker_04a854542eca5a6643ebef6e13c86ab0.bindPopup(popup_37ddb8f6d8c25043fd2e7accb3e5c72f)
+        ;
+
+        
+    
+    
+            marker_04a854542eca5a6643ebef6e13c86ab0.bindTooltip(
+                `<div>
+                     Name: <strong>Serial Grillers</strong></br>     City: <strong>Tucson</strong></br>     Address: <strong>5975 E Speedway Blvd</strong></br>     State: <strong>FL</strong></br>      Categorias: <strong>Food</strong></br>     SubCategorias: <strong> Food,  Salad</strong></br>     Total_Estrellas: <strong>1025</strong></br>     Total_CincoEstrellas: <strong>643</strong></br>     T_S_P_Review: <strong>973</strong></br>     Total_useful: <strong>802</strong></br>     Total_funny: <strong>283</strong></br>     Total_cool: <strong>494</strong></br>     T_S_P_Tip: <strong>0</strong></br>     </br> 
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_603201a8eb7c52d8e8e673603f967a17 = L.marker(
+                [39.5311073, -119.8096181],
+                {}
+            ).addTo(marker_cluster_ceedff89b962a828bf725e8c4af446e4);
+        
+    
+            var icon_e2ca59390ebdc6c46876ffa38f97a85f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_603201a8eb7c52d8e8e673603f967a17.setIcon(icon_e2ca59390ebdc6c46876ffa38f97a85f);
+        
+    
+        var popup_9f7e7a4d18850deb9ec3b6947bbf554a = L.popup({"maxWidth": 450, "minWidth": 300});
+
+        
+            
+                var html_5f19a3acce6e551ec311f2bae547f955 = $(`<div id="html_5f19a3acce6e551ec311f2bae547f955" style="width: 100.0%; height: 100.0%;">Name: <strong>The Depot Craft Brewery Distillery</strong></br>    City: <strong>Reno</strong></br>     Address: <strong>325 E 4th St</strong></br>     State: <strong>FL</strong></br>     latitude: <strong>39.5311073</strong></br>     longitude: <strong>-119.8096181</strong></br>     </br></div>`)[0];
+                popup_9f7e7a4d18850deb9ec3b6947bbf554a.setContent(html_5f19a3acce6e551ec311f2bae547f955);
+            
+        
+
+        marker_603201a8eb7c52d8e8e673603f967a17.bindPopup(popup_9f7e7a4d18850deb9ec3b6947bbf554a)
+        ;
+
+        
+    
+    
+            marker_603201a8eb7c52d8e8e673603f967a17.bindTooltip(
+                `<div>
+                     Name: <strong>The Depot Craft Brewery Distillery</strong></br>     City: <strong>Reno</strong></br>     Address: <strong>325 E 4th St</strong></br>     State: <strong>FL</strong></br>      Categorias: <strong>Food</strong></br>     SubCategorias: <strong>Food,  Brasseries</strong></br>     Total_Estrellas: <strong>1282</strong></br>     Total_CincoEstrellas: <strong>555</strong></br>     T_S_P_Review: <strong>1202</strong></br>     Total_useful: <strong>1425</strong></br>     Total_funny: <strong>378</strong></br>     Total_cool: <strong>1068</strong></br>     T_S_P_Tip: <strong>0</strong></br>     </br> 
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_cbb1345bcbac86daa93c0f59e2362a4b = L.marker(
+                [39.5298674133, -119.8201728092],
+                {}
+            ).addTo(marker_cluster_ceedff89b962a828bf725e8c4af446e4);
+        
+    
+            var icon_09fc1824d70a9e45338ec44d834f23e6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_cbb1345bcbac86daa93c0f59e2362a4b.setIcon(icon_09fc1824d70a9e45338ec44d834f23e6);
+        
+    
+        var popup_f98ffde20a664e98f55e6299b86287be = L.popup({"maxWidth": 450, "minWidth": 300});
+
+        
+            
+                var html_8dd62b1d44fea7dedc18ad6ec6acc890 = $(`<div id="html_8dd62b1d44fea7dedc18ad6ec6acc890" style="width: 100.0%; height: 100.0%;">Name: <strong>101 Taiwanese Cuisine</strong></br>    City: <strong>Reno</strong></br>     Address: <strong>400 W 5th St, Ste 104</strong></br>     State: <strong>MO</strong></br>     latitude: <strong>39.5298674133</strong></br>     longitude: <strong>-119.8201728092</strong></br>     </br></div>`)[0];
+                popup_f98ffde20a664e98f55e6299b86287be.setContent(html_8dd62b1d44fea7dedc18ad6ec6acc890);
+            
+        
+
+        marker_cbb1345bcbac86daa93c0f59e2362a4b.bindPopup(popup_f98ffde20a664e98f55e6299b86287be)
+        ;
+
+        
+    
+    
+            marker_cbb1345bcbac86daa93c0f59e2362a4b.bindTooltip(
+                `<div>
+                     Name: <strong>101 Taiwanese Cuisine</strong></br>     City: <strong>Reno</strong></br>     Address: <strong>400 W 5th St, Ste 104</strong></br>     State: <strong>MO</strong></br>      Categorias: <strong>Food</strong></br>     SubCategorias: <strong>Food,  Chinese</strong></br>     Total_Estrellas: <strong>1188</strong></br>     Total_CincoEstrellas: <strong>533</strong></br>     T_S_P_Review: <strong>1061</strong></br>     Total_useful: <strong>1488</strong></br>     Total_funny: <strong>486</strong></br>     Total_cool: <strong>921</strong></br>     T_S_P_Tip: <strong>0</strong></br>     </br> 
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_1dfb87770bd20803bc40e64487bf2538 = L.marker(
+                [39.9509564, -75.1654591],
+                {}
+            ).addTo(marker_cluster_ceedff89b962a828bf725e8c4af446e4);
+        
+    
+            var icon_074b6091f0b0f66fb39dfb7e8a60ed6e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_1dfb87770bd20803bc40e64487bf2538.setIcon(icon_074b6091f0b0f66fb39dfb7e8a60ed6e);
+        
+    
+        var popup_727dcf92160f6ebf25155ae4ac7f6f52 = L.popup({"maxWidth": 450, "minWidth": 300});
+
+        
+            
+                var html_a609f47735e82c585ccbacecb2621c45 = $(`<div id="html_a609f47735e82c585ccbacecb2621c45" style="width: 100.0%; height: 100.0%;">Name: <strong>Del Frisco's Double Eagle Steakhouse</strong></br>    City: <strong>Philadelphia</strong></br>     Address: <strong>1428-1432 Chestnut St</strong></br>     State: <strong>PA</strong></br>     latitude: <strong>39.9509564</strong></br>     longitude: <strong>-75.1654591</strong></br>     </br></div>`)[0];
+                popup_727dcf92160f6ebf25155ae4ac7f6f52.setContent(html_a609f47735e82c585ccbacecb2621c45);
+            
+        
+
+        marker_1dfb87770bd20803bc40e64487bf2538.bindPopup(popup_727dcf92160f6ebf25155ae4ac7f6f52)
+        ;
+
+        
+    
+    
+            marker_1dfb87770bd20803bc40e64487bf2538.bindTooltip(
+                `<div>
+                     Name: <strong>Del Frisco's Double Eagle Steakhouse</strong></br>     City: <strong>Philadelphia</strong></br>     Address: <strong>1428-1432 Chestnut St</strong></br>     State: <strong>PA</strong></br>      Categorias: <strong>Food</strong></br>     SubCategorias: <strong>Food,  Seafood</strong></br>     Total_Estrellas: <strong>1169</strong></br>     Total_CincoEstrellas: <strong>507</strong></br>     T_S_P_Review: <strong>1094</strong></br>     Total_useful: <strong>1008</strong></br>     Total_funny: <strong>357</strong></br>     Total_cool: <strong>439</strong></br>     T_S_P_Tip: <strong>0</strong></br>     </br> 
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_2cd87a29d19ba8b24afa0ea6b7dd441e = L.marker(
+                [27.961543, -82.441147],
+                {}
+            ).addTo(marker_cluster_ceedff89b962a828bf725e8c4af446e4);
+        
+    
+            var icon_6acb12f2bf1e24e479cf8412c48fee49 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_2cd87a29d19ba8b24afa0ea6b7dd441e.setIcon(icon_6acb12f2bf1e24e479cf8412c48fee49);
+        
+    
+        var popup_04266c1ac496e5aecef056e9b5cd191b = L.popup({"maxWidth": 450, "minWidth": 300});
+
+        
+            
+                var html_b18b282e35d75d6809dd734ea8feb28b = $(`<div id="html_b18b282e35d75d6809dd734ea8feb28b" style="width: 100.0%; height: 100.0%;">Name: <strong>Tampa Bay Brewing Company</strong></br>    City: <strong>Tampa</strong></br>     Address: <strong>1600 E 8th Ave</strong></br>     State: <strong>PA</strong></br>     latitude: <strong>27.961543</strong></br>     longitude: <strong>-82.441147</strong></br>     </br></div>`)[0];
+                popup_04266c1ac496e5aecef056e9b5cd191b.setContent(html_b18b282e35d75d6809dd734ea8feb28b);
+            
+        
+
+        marker_2cd87a29d19ba8b24afa0ea6b7dd441e.bindPopup(popup_04266c1ac496e5aecef056e9b5cd191b)
+        ;
+
+        
+    
+    
+            marker_2cd87a29d19ba8b24afa0ea6b7dd441e.bindTooltip(
+                `<div>
+                     Name: <strong>Tampa Bay Brewing Company</strong></br>     City: <strong>Tampa</strong></br>     Address: <strong>1600 E 8th Ave</strong></br>     State: <strong>PA</strong></br>      Categorias: <strong>Food</strong></br>     SubCategorias: <strong> Food,  Breweries</strong></br>     Total_Estrellas: <strong>1118</strong></br>     Total_CincoEstrellas: <strong>495</strong></br>     T_S_P_Review: <strong>1055</strong></br>     Total_useful: <strong>762</strong></br>     Total_funny: <strong>286</strong></br>     Total_cool: <strong>477</strong></br>     T_S_P_Tip: <strong>0</strong></br>     </br> 
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d2df8ad5d4e05f0de036c012ee3be418 = L.marker(
+                [27.945245, -82.525857],
+                {}
+            ).addTo(marker_cluster_ceedff89b962a828bf725e8c4af446e4);
+        
+    
+            var icon_b7700d222cb6e79583c5e4f879631c73 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_d2df8ad5d4e05f0de036c012ee3be418.setIcon(icon_b7700d222cb6e79583c5e4f879631c73);
+        
+    
+        var popup_5522fafbdc3bc5ae23e8dec47bf77015 = L.popup({"maxWidth": 450, "minWidth": 300});
+
+        
+            
+                var html_eee264b4b7e9fdf9fb2bd5fc88d72d13 = $(`<div id="html_eee264b4b7e9fdf9fb2bd5fc88d72d13" style="width: 100.0%; height: 100.0%;">Name: <strong>Curry Leaves Indian Cuisine</strong></br>    City: <strong>Tampa</strong></br>     Address: <strong>4843 W Kennedy Blvd</strong></br>     State: <strong>NJ</strong></br>     latitude: <strong>27.945245</strong></br>     longitude: <strong>-82.525857</strong></br>     </br></div>`)[0];
+                popup_5522fafbdc3bc5ae23e8dec47bf77015.setContent(html_eee264b4b7e9fdf9fb2bd5fc88d72d13);
+            
+        
+
+        marker_d2df8ad5d4e05f0de036c012ee3be418.bindPopup(popup_5522fafbdc3bc5ae23e8dec47bf77015)
+        ;
+
+        
+    
+    
+            marker_d2df8ad5d4e05f0de036c012ee3be418.bindTooltip(
+                `<div>
+                     Name: <strong>Curry Leaves Indian Cuisine</strong></br>     City: <strong>Tampa</strong></br>     Address: <strong>4843 W Kennedy Blvd</strong></br>     State: <strong>NJ</strong></br>      Categorias: <strong>Food</strong></br>     SubCategorias: <strong> Food,  Indian</strong></br>     Total_Estrellas: <strong>717</strong></br>     Total_CincoEstrellas: <strong>478</strong></br>     T_S_P_Review: <strong>670</strong></br>     Total_useful: <strong>789</strong></br>     Total_funny: <strong>223</strong></br>     Total_cool: <strong>365</strong></br>     T_S_P_Tip: <strong>0</strong></br>     </br> 
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a02b1b6e720487c2dbc0d016f98f5107 = L.marker(
+                [29.9272091, -90.0742935],
+                {}
+            ).addTo(marker_cluster_ceedff89b962a828bf725e8c4af446e4);
+        
+    
+            var icon_43e39063281750681c080d2b44cd9fcc = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_a02b1b6e720487c2dbc0d016f98f5107.setIcon(icon_43e39063281750681c080d2b44cd9fcc);
+        
+    
+        var popup_431206d870cfa2c46a3f5c78edaab57d = L.popup({"maxWidth": 450, "minWidth": 300});
+
+        
+            
+                var html_3f9d3d2f4036ada5b8ee32b42c8c0e70 = $(`<div id="html_3f9d3d2f4036ada5b8ee32b42c8c0e70" style="width: 100.0%; height: 100.0%;">Name: <strong>Turkey and the Wolf</strong></br>    City: <strong>New Orleans</strong></br>     Address: <strong>739 Jackson Ave</strong></br>     State: <strong>MO</strong></br>     latitude: <strong>29.9272091</strong></br>     longitude: <strong>-90.0742935</strong></br>     </br></div>`)[0];
+                popup_431206d870cfa2c46a3f5c78edaab57d.setContent(html_3f9d3d2f4036ada5b8ee32b42c8c0e70);
+            
+        
+
+        marker_a02b1b6e720487c2dbc0d016f98f5107.bindPopup(popup_431206d870cfa2c46a3f5c78edaab57d)
+        ;
+
+        
+    
+    
+            marker_a02b1b6e720487c2dbc0d016f98f5107.bindTooltip(
+                `<div>
+                     Name: <strong>Turkey and the Wolf</strong></br>     City: <strong>New Orleans</strong></br>     Address: <strong>739 Jackson Ave</strong></br>     State: <strong>MO</strong></br>      Categorias: <strong>Food</strong></br>     SubCategorias: <strong> Food,  Cocktail Bars</strong></br>     Total_Estrellas: <strong>669</strong></br>     Total_CincoEstrellas: <strong>445</strong></br>     T_S_P_Review: <strong>622</strong></br>     Total_useful: <strong>721</strong></br>     Total_funny: <strong>272</strong></br>     Total_cool: <strong>400</strong></br>     T_S_P_Tip: <strong>0</strong></br>     </br> 
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_81a9e0d19ab0d32d7905080f8c3a4206 = L.marker(
+                [39.5042081, -119.7827681],
+                {}
+            ).addTo(marker_cluster_ceedff89b962a828bf725e8c4af446e4);
+        
+    
+            var icon_00db01774cecbacef600e629325a46c0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_81a9e0d19ab0d32d7905080f8c3a4206.setIcon(icon_00db01774cecbacef600e629325a46c0);
+        
+    
+        var popup_0a2aa441607e4be360a6c8d9ff39ffa8 = L.popup({"maxWidth": 450, "minWidth": 300});
+
+        
+            
+                var html_3dd5d553aa0ebffb00be67925a81820c = $(`<div id="html_3dd5d553aa0ebffb00be67925a81820c" style="width: 100.0%; height: 100.0%;">Name: <strong>Kaffe Crepe</strong></br>    City: <strong>Reno</strong></br>     Address: <strong>1300 East Plumb Ln, Ste C4</strong></br>     State: <strong>FL</strong></br>     latitude: <strong>39.5042081</strong></br>     longitude: <strong>-119.7827681</strong></br>     </br></div>`)[0];
+                popup_0a2aa441607e4be360a6c8d9ff39ffa8.setContent(html_3dd5d553aa0ebffb00be67925a81820c);
+            
+        
+
+        marker_81a9e0d19ab0d32d7905080f8c3a4206.bindPopup(popup_0a2aa441607e4be360a6c8d9ff39ffa8)
+        ;
+
+        
+    
+    
+            marker_81a9e0d19ab0d32d7905080f8c3a4206.bindTooltip(
+                `<div>
+                     Name: <strong>Kaffe Crepe</strong></br>     City: <strong>Reno</strong></br>     Address: <strong>1300 East Plumb Ln, Ste C4</strong></br>     State: <strong>FL</strong></br>      Categorias: <strong>Food</strong></br>     SubCategorias: <strong>Food,  Cafes</strong></br>     Total_Estrellas: <strong>474</strong></br>     Total_CincoEstrellas: <strong>418</strong></br>     T_S_P_Review: <strong>466</strong></br>     Total_useful: <strong>608</strong></br>     Total_funny: <strong>93</strong></br>     Total_cool: <strong>474</strong></br>     T_S_P_Tip: <strong>0</strong></br>     </br> 
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_949a53a767c4c7d4c4f7abf4942abcb4 = L.marker(
+                [34.4243524, -119.7064283],
+                {}
+            ).addTo(marker_cluster_ceedff89b962a828bf725e8c4af446e4);
+        
+    
+            var icon_f216bfded93ba5c87a65781c3de337f9 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_949a53a767c4c7d4c4f7abf4942abcb4.setIcon(icon_f216bfded93ba5c87a65781c3de337f9);
+        
+    
+        var popup_ae062f7bedd80bee3367eec87a6614ee = L.popup({"maxWidth": 450, "minWidth": 300});
+
+        
+            
+                var html_0ebb04f19f043c3ef12ac483bbc44ad5 = $(`<div id="html_0ebb04f19f043c3ef12ac483bbc44ad5" style="width: 100.0%; height: 100.0%;">Name: <strong>Jane</strong></br>    City: <strong>Santa Barbara</strong></br>     Address: <strong>1311 State St</strong></br>     State: <strong>NJ</strong></br>     latitude: <strong>34.4243524</strong></br>     longitude: <strong>-119.7064283</strong></br>     </br></div>`)[0];
+                popup_ae062f7bedd80bee3367eec87a6614ee.setContent(html_0ebb04f19f043c3ef12ac483bbc44ad5);
+            
+        
+
+        marker_949a53a767c4c7d4c4f7abf4942abcb4.bindPopup(popup_ae062f7bedd80bee3367eec87a6614ee)
+        ;
+
+        
+    
+    
+            marker_949a53a767c4c7d4c4f7abf4942abcb4.bindTooltip(
+                `<div>
+                     Name: <strong>Jane</strong></br>     City: <strong>Santa Barbara</strong></br>     Address: <strong>1311 State St</strong></br>     State: <strong>NJ</strong></br>      Categorias: <strong>Food</strong></br>     SubCategorias: <strong> Food,  American (New)</strong></br>     Total_Estrellas: <strong>755</strong></br>     Total_CincoEstrellas: <strong>413</strong></br>     T_S_P_Review: <strong>723</strong></br>     Total_useful: <strong>681</strong></br>     Total_funny: <strong>310</strong></br>     Total_cool: <strong>397</strong></br>     T_S_P_Tip: <strong>0</strong></br>     </br> 
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a618a7a4a315f643a2efcae6db0cfa17 = L.marker(
+                [38.5991673517, -90.4169680166],
+                {}
+            ).addTo(marker_cluster_ceedff89b962a828bf725e8c4af446e4);
+        
+    
+            var icon_d8ebc6c9d95143323fedbf49d44325d5 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_a618a7a4a315f643a2efcae6db0cfa17.setIcon(icon_d8ebc6c9d95143323fedbf49d44325d5);
+        
+    
+        var popup_54d4e624f3f70cffaa8c25e7eb3cf424 = L.popup({"maxWidth": 450, "minWidth": 300});
+
+        
+            
+                var html_5df14ef728575865762f36901e897558 = $(`<div id="html_5df14ef728575865762f36901e897558" style="width: 100.0%; height: 100.0%;">Name: <strong>Nathaniel Reid Bakery</strong></br>    City: <strong>Saint Louis</strong></br>     Address: <strong>11243 Manchester Rd</strong></br>     State: <strong>IL</strong></br>     latitude: <strong>38.5991673517</strong></br>     longitude: <strong>-90.4169680166</strong></br>     </br></div>`)[0];
+                popup_54d4e624f3f70cffaa8c25e7eb3cf424.setContent(html_5df14ef728575865762f36901e897558);
+            
+        
+
+        marker_a618a7a4a315f643a2efcae6db0cfa17.bindPopup(popup_54d4e624f3f70cffaa8c25e7eb3cf424)
+        ;
+
+        
+    
+    
+            marker_a618a7a4a315f643a2efcae6db0cfa17.bindTooltip(
+                `<div>
+                     Name: <strong>Nathaniel Reid Bakery</strong></br>     City: <strong>Saint Louis</strong></br>     Address: <strong>11243 Manchester Rd</strong></br>     State: <strong>IL</strong></br>      Categorias: <strong>Food</strong></br>     SubCategorias: <strong> Food,  Desserts</strong></br>     Total_Estrellas: <strong>473</strong></br>     Total_CincoEstrellas: <strong>403</strong></br>     T_S_P_Review: <strong>455</strong></br>     Total_useful: <strong>634</strong></br>     Total_funny: <strong>224</strong></br>     Total_cool: <strong>469</strong></br>     T_S_P_Tip: <strong>0</strong></br>     </br> 
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_800153500578f1bb41cda8700d1c4206 = L.marker(
+                [39.906797, -86.2182121],
+                {}
+            ).addTo(marker_cluster_ceedff89b962a828bf725e8c4af446e4);
+        
+    
+            var icon_c531826f407e05d5d676d6a407cecd6b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_800153500578f1bb41cda8700d1c4206.setIcon(icon_c531826f407e05d5d676d6a407cecd6b);
+        
+    
+        var popup_cd0207f4b44755163b2bd8719626f664 = L.popup({"maxWidth": 450, "minWidth": 300});
+
+        
+            
+                var html_8ed279a56c2e3d33e70dfd347efeca8c = $(`<div id="html_8ed279a56c2e3d33e70dfd347efeca8c" style="width: 100.0%; height: 100.0%;">Name: <strong>The Cuban Sandwich Shop</strong></br>    City: <strong>Indianapolis</strong></br>     Address: <strong>8329 Michigan Rd</strong></br>     State: <strong>MO</strong></br>     latitude: <strong>39.906797</strong></br>     longitude: <strong>-86.2182121</strong></br>     </br></div>`)[0];
+                popup_cd0207f4b44755163b2bd8719626f664.setContent(html_8ed279a56c2e3d33e70dfd347efeca8c);
+            
+        
+
+        marker_800153500578f1bb41cda8700d1c4206.bindPopup(popup_cd0207f4b44755163b2bd8719626f664)
+        ;
+
+        
+    
+    
+            marker_800153500578f1bb41cda8700d1c4206.bindTooltip(
+                `<div>
+                     Name: <strong>The Cuban Sandwich Shop</strong></br>     City: <strong>Indianapolis</strong></br>     Address: <strong>8329 Michigan Rd</strong></br>     State: <strong>MO</strong></br>      Categorias: <strong>Food</strong></br>     SubCategorias: <strong>Food,  Cuban</strong></br>     Total_Estrellas: <strong>520</strong></br>     Total_CincoEstrellas: <strong>400</strong></br>     T_S_P_Review: <strong>507</strong></br>     Total_useful: <strong>430</strong></br>     Total_funny: <strong>57</strong></br>     Total_cool: <strong>324</strong></br>     T_S_P_Tip: <strong>0</strong></br>     </br> 
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_50d3547cafac96d164986ea41468abaa = L.marker(
+                [36.1590990661, -86.7750539509],
+                {}
+            ).addTo(marker_cluster_ceedff89b962a828bf725e8c4af446e4);
+        
+    
+            var icon_8994bf42eb8b3bf8d0c7fc864f990417 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_50d3547cafac96d164986ea41468abaa.setIcon(icon_8994bf42eb8b3bf8d0c7fc864f990417);
+        
+    
+        var popup_682a2328c997790cf3bcddef8964dd15 = L.popup({"maxWidth": 450, "minWidth": 300});
+
+        
+            
+                var html_deacc367e9bc59fba58f72f1b82a7331 = $(`<div id="html_deacc367e9bc59fba58f72f1b82a7331" style="width: 100.0%; height: 100.0%;">Name: <strong>The Farm House</strong></br>    City: <strong>Nashville</strong></br>     Address: <strong>210 Almond St</strong></br>     State: <strong>PA</strong></br>     latitude: <strong>36.1590990661</strong></br>     longitude: <strong>-86.7750539509</strong></br>     </br></div>`)[0];
+                popup_682a2328c997790cf3bcddef8964dd15.setContent(html_deacc367e9bc59fba58f72f1b82a7331);
+            
+        
+
+        marker_50d3547cafac96d164986ea41468abaa.bindPopup(popup_682a2328c997790cf3bcddef8964dd15)
+        ;
+
+        
+    
+    
+            marker_50d3547cafac96d164986ea41468abaa.bindTooltip(
+                `<div>
+                     Name: <strong>The Farm House</strong></br>     City: <strong>Nashville</strong></br>     Address: <strong>210 Almond St</strong></br>     State: <strong>PA</strong></br>      Categorias: <strong>Food</strong></br>     SubCategorias: <strong>Food,  Southern</strong></br>     Total_Estrellas: <strong>844</strong></br>     Total_CincoEstrellas: <strong>388</strong></br>     T_S_P_Review: <strong>796</strong></br>     Total_useful: <strong>512</strong></br>     Total_funny: <strong>140</strong></br>     Total_cool: <strong>252</strong></br>     T_S_P_Tip: <strong>0</strong></br>     </br> 
+                 </div>`,
+                {"sticky": true}
+            );
+        
+</script>
+</html>

@@ -10,7 +10,22 @@ from pandas.api.types import (
     is_object_dtype,
 )
 
+# st.title("Auto Filter Dataframes in Streamlit")
+# st.write(
+#     """Luis A, Ramirez G.
+#     """
+# )
+
 def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Adds a UI on top of a dataframe to let viewers filter columns
+
+    Args:
+        df (pd.DataFrame): Original dataframe
+
+    Returns:
+        pd.DataFrame: Filtered dataframe
+    """
     modify = st.checkbox("Add filters")
 
     if not modify:
@@ -68,7 +83,7 @@ def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
 
 def app():
     # Cargar y mostrar la imagen
-    st.title('Opciones para inversionistas')
+    st.title('Opciones para Inversión')
     st.header('Proyecto Yelp & Google Maps')
     st.subheader('Propuestas de Inversiones')
     st.subheader('Filtros')

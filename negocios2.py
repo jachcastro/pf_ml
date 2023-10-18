@@ -39,16 +39,21 @@ def cosine_similaritys(random_state_cs):
 
     # Crear un DataFrame con los 10 restaurantes más similares
     restaurantes_similares = prom_final_y_one_hot.iloc[indices_10_similares]
+    # Mostrar el DataFrame con los 10 restaurantes más similares
+    print("Restaurante aleatorio seleccionado:")
+    print(restaurante_aleatorio[['name','state','city','promedio_sentimientos_positivos','promedio_sentimientos_negativos','stars']].head())
+    print("Restaurantes Más Similares (Top 10):")
+    print(restaurantes_similares[['name','state','city','promedio_sentimientos_positivos','promedio_sentimientos_negativos','stars']])
+    
+    # Prepare the output for the top 10 similar restaurants
+    top_10_similar_restaurants_output = f"Restaurantes Más Similares (Top 10):\n{restaurantes_similares[['name','state','city','promedio_sentimientos_positivos','promedio_sentimientos_negativos','stars']].to_string(index=False)}"
 
     # Prepare the output for the randomly selected restaurant
-    random_restaurant_output = "\nRestaurante aleatorio seleccionado:\n"
-    random_restaurant_output += restaurante_aleatorio[['name', 'state', 'city', 'promedio_sentimientos_positivos', 'promedio_sentimientos_negativos', 'stars']].head().to_string(index=False)
+    random_restaurant_output = f"\nRestaurante aleatorio seleccionado:\n{restaurante_aleatorio[['name','state','city','promedio_sentimientos_positivos','promedio_sentimientos_negativos','stars']].head().to_string(index=False)}"
 
     # Combine both outputs
     combined_output = top_10_similar_restaurants_output + random_restaurant_output
-
     return combined_output
-
 
 ### Metodo Ridge
 def metodo_ridge(random_state_user):
@@ -101,13 +106,28 @@ def metodo_ridge(random_state_user):
     top_25_coefs = coefs[top_25_coefs]
 
     # Plot the top 25 features
-    plt.figure(figsize=(12, 8))
-    plt.bar(range(len(top_25_coefs)), top_25_coefs)
-    plt.xlabel('Característica')
-    plt.ylabel('Coeficiente')
-    plt.title('Coeficientes mas importantes detectados por el Modelo Ridge:')
-    plt.xticks(range(len(top_25_coefs)), top_25_feature_names, rotation=90)
+    # plt.figure(figsize=(12, 8))
+    # plt.bar(range(len(top_25_coefs)), top_25_coefs)
+    # plt.xlabel('Característica')
+    # plt.ylabel('Coeficiente')
+    # plt.title('Coeficientes mas importantes detectados por el Modelo Ridge:')
+    # plt.xticks(range(len(top_25_coefs)), top_25_feature_names, rotation=90)
+    # plt.tight_layout()
+    # Visualizar los coeficientes de las top 25 características
+    
+    # Disable PyplotGlobalUseWarning
+    st.set_option('deprecation.showPyplotGlobalUse',False)
+    fig, ax = plt.subplots(figsize=(12, 8))
+    ax.bar(range(len(top_25_coefs)), top_25_coefs)
+    ax.set_xlabel('Característica')
+    ax.set_ylabel('Coeficiente')
+    ax.set_title('Coeficientes mas importantes detectados por el Modelo Ridge:')
+    ax.set_xticks(range(len(top_25_coefs)))
+    ax.set_xticklabels(top_25_feature_names, rotation=90)
     plt.tight_layout()
+   
+    # Display the plot using Streamlit
+    # st.pyplot(fig)
 
     return ridge_results
 
@@ -131,7 +151,7 @@ def app():
     # Display the plot of top 25 features
     st.pyplot()
 
-        # Streamlit app
+    # Streamlit app
     st.title("Cosine Similarity App")
 
     # User input for random_state_cs
