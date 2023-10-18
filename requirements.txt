@@ -5,5 +5,5 @@ streamlit_option_menu
 torch
 transformers
 nltk
-sklearn
+scikit-learn
 matplotlib
