@@ -1,142 +1,102 @@
-# negocios
+#filtros
 
-import streamlit as st
 import pandas as pd
-import numpy as np
-from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score, explained_variance_score
-import matplotlib.pyplot as plt
-from sklearn.linear_model import Ridge
+import streamlit as st
+import streamlit.components.v1 as components
+from pandas.api.types import (
+    is_categorical_dtype,
+    is_datetime64_any_dtype,
+    is_numeric_dtype,
+    is_object_dtype,
+)
 
-prom_final_y_one_hot = pd.read_parquet('data/Datasets_ML_ML_Luca_prom_final_y_one_hot.parquet')
+# st.title("Auto Filter Dataframes in Streamlit")
+# st.write(
+#     """Luis A, Ramirez G.
+#     """
+# )
 
-### Aplicacion Cosine Similarity:
-def cosine_similaritys(random_state_cs):
-    # Seleccionar un restaurante aleatorio del conjunto de datos
-    restaurante_aleatorio = prom_final_y_one_hot.sample(random_state=random_state_cs)
+def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Adds a UI on top of a dataframe to let viewers filter columns
 
-    # Seleccionar solo las columnas numéricas relevantes para el cálculo de similitud
-    columnas_numericas_relevantes = restaurante_aleatorio.select_dtypes(include='number').values
+    Args:
+        df (pd.DataFrame): Original dataframe
 
-    # Calcular la similitud del coseno con respecto a todos los restaurantes
-    similitud_coseno = cosine_similarity(columnas_numericas_relevantes, prom_final_y_one_hot.select_dtypes(include='number'))
+    Returns:
+        pd.DataFrame: Filtered dataframe
+    """
+    modify = st.checkbox("Add filters")
 
-    # Obtener los índices de los 10 restaurantes más similares, incluyendo el índice 0
-    indices_similares = np.argsort(similitud_coseno[0])[::-1][:10]
+    if not modify:
+        return df 
 
-    # Prepare the output for the top 10 similar restaurants
-    top_10_similar_restaurants_output = "Restaurantes Más Similares (Top 10):\n"
-    for i, indice in enumerate(indices_similares):
-        similitud = similitud_coseno[0][indice]  # Obtener la similitud del coseno para el restaurante en el índice
-        porcentaje_similitud = (similitud * 100).round(2)  # Convertir a porcentaje y redondear a 2 decimales
-        top_10_similar_restaurants_output += f"Porcentaje de similitud con restaurante {indice}: {porcentaje_similitud}%\n"
+    # df = df.copy()
 
-    # Obtener los índices de los restaurantes más similares (top 10)
-    indices_10_similares = np.argsort(similitud_coseno[0])[::-1][1:11]  # Tomamos los primeros 10
+    modification_container = st.container()
 
-    # Crear un DataFrame con los 10 restaurantes más similares
-    restaurantes_similares = prom_final_y_one_hot.iloc[indices_10_similares]
+    with modification_container:
+        to_filter_columns = st.multiselect("Filter dataframe on", df.columns)
+        for column in to_filter_columns:
+            left, right = st.columns((1, 20))
+            left.write("↳")
+            # Treat columns with < 10 unique values as categorical
+            if is_categorical_dtype(df[column]) or df[column].nunique() < 10:
+                user_cat_input = right.multiselect(
+                    f"Values for {column}",
+                    df[column].unique(),
+                    default=list(df[column].unique()),
+                )
+                df = df[df[column].isin(user_cat_input)]
+            elif is_numeric_dtype(df[column]):
+                _min = float(df[column].min())
+                _max = float(df[column].max())
+                step = (_max - _min) / 100
+                user_num_input = right.slider(
+                    f"Values for {column}",
+                    _min,
+                    _max,
+                    (_min, _max),
+                    step=step,
+                )
+                df = df[df[column].between(*user_num_input)]
+            elif is_datetime64_any_dtype(df[column]):
+                user_date_input = right.date_input(
+                    f"Values for {column}",
+                    value=(
+                        df[column].min(),
+                        df[column].max(),
+                    ),
+                )
+                if len(user_date_input) == 2:
+                    user_date_input = tuple(map(pd.to_datetime, user_date_input))
+                    start_date, end_date = user_date_input
+                    df = df.loc[df[column].between(start_date, end_date)]
+            else:
+                user_text_input = right.text_input(
+                    f"Substring or regex in {column}",
+                )
+                if user_text_input:
+                    df = df[df[column].str.contains(user_text_input)]
 
-    # Prepare the output for the randomly selected restaurant
-    random_restaurant_output = "\nRestaurante aleatorio seleccionado:\n"
-    random_restaurant_output += restaurante_aleatorio[['name', 'state', 'city', 'promedio_sentimientos_positivos', 'promedio_sentimientos_negativos', 'stars']].head().to_string(index=False)
-
-    # Combine both outputs
-    combined_output = top_10_similar_restaurants_output + random_restaurant_output
-
-    return combined_output
-
-
-### Metodo Ridge
-def metodo_ridge(random_state_user):
-    # Copy the data
-    set = prom_final_y_one_hot.copy()
-
-    # Drop unnecessary columns
-    set = set.drop(['business_id', 'name', 'address', 'city', 'state', 'postal_code', 'BusinessParking'], axis=1)
-
-    # Separar datos
-    X = set.drop('stars_volume', axis=1)
-    y = set['stars_volume']
-
-    # Dividir datos en conjuntos de entrenamiento y prueba
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=random_state_user)
-
-    # Entrenar el modelo con regularización Ridge
-    ridge_model = Ridge(alpha=0.1)  # Alpha controla la fuerza de la regularización
-    ridge_model.fit(X_train, y_train)
-
-    # Evaluar el modelo
-    y_pred_ridge = ridge_model.predict(X_test)
-    mse_ridge = mean_squared_error(y_test, y_pred_ridge)
-    mae_ridge = mean_absolute_error(y_test, y_pred_ridge)
-    r2_ridge = r2_score(y_test, y_pred_ridge)
-    explained_var_ridge = explained_variance_score(y_test, y_pred_ridge)
-
-    # Prepare the output for Ridge results
-    ridge_results = {
-        'Ridge Regression': {
-            'Mean Squared Error': mse_ridge,
-            'Mean Absolute Error': mae_ridge,
-            'R-squared': r2_ridge,
-            'Explained Variance Score': explained_var_ridge
-        }
-    }
-
-    # Plot the top 25 features
-    # Obtener los nombres de las características
-    feature_names = X.columns
-
-    # Obtener los coeficientes del modelo Ridge
-    coefs = ridge_model.coef_
-
-    # Obtener los coeficientes y nombres de las top 25 características
-    top_25_coefs = coefs.argsort()[-25:]
-    top_25_feature_names = feature_names[top_25_coefs]
-
-    # Obtener los coeficientes correspondientes a las top 25 características
-    top_25_coefs = coefs[top_25_coefs]
-
-    # Plot the top 25 features
-    plt.figure(figsize=(12, 8))
-    plt.bar(range(len(top_25_coefs)), top_25_coefs)
-    plt.xlabel('Característica')
-    plt.ylabel('Coeficiente')
-    plt.title('Coeficientes mas importantes detectados por el Modelo Ridge:')
-    plt.xticks(range(len(top_25_coefs)), top_25_feature_names, rotation=90)
-    plt.tight_layout()
-
-    return ridge_results
+    return df
 
 def app():
+    # Cargar y mostrar la imagen
     st.title('Opciones para negocios')
     st.header('Proyecto Yelp & Google Maps')
+    st.subheader('Propuestas de negocios')
+    st.subheader('Filtros')
+    data_url = "data/Datasets_ML_NuevosDatasetsML_Consolidado_Businees_Review_Tip.parquet"
 
-    # Streamlit app
-    st.subheader("Ridge Regression Analysis")
+    df = pd.read_parquet(data_url)
+    df1 = df[['name', 'state', 'city', 'stars', 'review_count', 
+        'T_S_P_Review', 'T_S_N_Review', 'T_S_P_Tip', 'T_S_N_Tip', 
+        'Categorias', 'SubCategorias']].copy()
 
-    # User input for random_state_user
-    random_state_user = st.number_input("Enter a random seed (random_state_user):", value=23, step=1)
-
-    # Run the Ridge method and get the results
-    ridge_results = metodo_ridge(random_state_user)
-
-    # Display the results
-    st.write("Ridge Regression Results:")
-    st.write(ridge_results)
-
-    # Display the plot of top 25 features
-    st.pyplot()
-
-        # Streamlit app
-    st.title("Cosine Similarity App")
-
-    # User input for random_state_cs
-    random_state_cs = st.number_input("Enter a random seed (random_state_cs):", value=42, step=1)
-
-    # Get the combined output
-    output = cosine_similaritys(random_state_cs)
-
-    # Display the output
-    st.text(output)
+    df1.rename(columns={'T_S_P_Review':'TotalSentPosiReviews', 'T_S_N_Review':'TotalSentNegaReviews',
+    'T_S_P_Tip':'TotalSentPosiTip', 'T_S_N_Tip':'TotalSentNegaTip'}, inplace=True)    
+    # df = df[['name', 'state', 'city', 'stars', 'review_count', 'Total_Sentimientos_Reviews',
+    #    'Total_Sentimientos_Tip', 'Total_useful', 'Total_funny', 'Total_cool',
+    #    'Categorias', 'SubCategorias']].copy()
+    st.dataframe(filter_dataframe(df1))

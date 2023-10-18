@@ -19,4 +19,3 @@ def app():
     # st.markdown("[MAPA]({url})")
     st.markdown("<div style='text-align: center;'><a href='{}' target='_blank'>MAPA</a></div>".format(url), unsafe_allow_html=True)
 
-
