@@ -72,7 +72,7 @@ def app():
     st.header('Proyecto Yelp & Google Maps')
     st.subheader('Propuestas de Inversiones')
     st.subheader('Filtros')
-    data_url = "./Datasets_ML_NuevosDatasetsML_Consolidado_Businees_Review_Tip.parquet"
+    data_url = "data/Datasets_ML_NuevosDatasetsML_Consolidado_Businees_Review_Tip.parquet"
 
     df = pd.read_parquet(data_url)
     df = df[['name', 'state', 'city', 'stars', 'Total_Estrellas',
