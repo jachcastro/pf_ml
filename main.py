@@ -23,8 +23,8 @@ class MultiApp:
         with st.sidebar:        
             app = option_menu(
                 menu_title='JL3 ',
-                options=['inicio','usuarios ml 1','usuarios ml 2','negocios','inversionistas','acerca de'],
-                icons=['house-fill','person-circle','person-circle','person-circle','info-circle-fill'],
+                options=['inicio','usuarios ml 1','usuarios ml 2','negocios','inversionistas', 'acerca de'],
+                icons=['house-fill','person-circle','person-circle','person-circle', 'info-circle-fill'],
                 menu_icon='chat-text-fill',
                 default_index=0,
                 styles={
@@ -46,8 +46,10 @@ class MultiApp:
             usuarios2.app()        
         if app == 'inversionistas':
             inversionistas.app()
+        if app == 'filtros':
+            filtros.app()  
         if app == 'acerca de':
-            acercade.app()    
+            acercade.app()   
              
           
              

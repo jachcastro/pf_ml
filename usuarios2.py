@@ -57,5 +57,5 @@ def app():
     if st.button('Analizar'):
         with st.spinner('Analizando...'):
             sentimiento_es = lambda x : "positivo" if (x == 1) else ("Negativo" if (x == -1) else "Neutro")
-            prediction = sentimiento_es(analisis_sentimento(fila['text'],10,10))
+            prediction = sentimiento_es(analisis_sentimento(user_input,10,10))
             st.markdown(f'El sentimiento del comentario es **{prediction}**.')

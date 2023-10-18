@@ -1,0 +1,21 @@
+Ser una solución tecnológica e inteligente, que una, aporte valor y fomenta la interacción de las 3 principales comunidades que participan de un negocio, Usuarios (consumidores finales), Negocios (Locales comerciales), Inversionistas (Inyección de capitales con objetivo de generar rentabilidad).
+
+BERT
+2 dataset gigantes
+Wikipedia
+google book
+
+modelo pre enternado
+
+Hugging face
+
+use
+bert cased
+
+Colocar fondo de pantalla
+palabra data science
+video ML
+
+gmy/Datasets_ML/NuevosDatasetsML/Consolidado_Businees_Review_Tip.parquet
+
+
