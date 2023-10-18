@@ -106,3 +106,6 @@ def app():
     df_inversion = df[Columnas_inversion]
 
     st.dataframe(filter_dataframe(df_inversion))
+
+    url="https://jl3.ntx360.net/Mapa_Inversion_PF_Grupo07.html"
+    st.markdown("<div style='text-align: center;'><a href='{}' target='_blank'>MAPA</a></div>".format(url), unsafe_allow_html=True)    
