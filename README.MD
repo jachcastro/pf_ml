@@ -13,7 +13,7 @@
 <img src="src/Imagenes/Img01.png", height=300>
 </p>
 
-# Aplicación Demo desplegada en streamlit
+# Aplicación Demo de Machine Learning desplegada en streamlit
 # <h1>https://pfmljl3.streamlit.app/</h1>
 <img src="src/streamlit.png">
 <img src="src/image27_frqkzv.png">
