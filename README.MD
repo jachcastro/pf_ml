@@ -14,4 +14,8 @@
 </p>
 
 # Aplicación Demo desplegada en streamlit
-https://pfmljl3.streamlit.app/
+# <h1>https://pfmljl3.streamlit.app/</h1>
+<img src="src/src/streamlit.png">
+<img src="src/src/image27_frqkzv.png">
+<img src="src/src/ML.png">
+
