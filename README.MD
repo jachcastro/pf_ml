@@ -10,7 +10,7 @@
 # <h1 align=center>**`YELP & GOOGLE MAPS - REVIEWS AND RECOMMENDATIONS`**</h1>
 
 <p align="center">
-<img src="src/Imagenes/Img01.png", height=300>
+<img src="src/Img01.png", height=300>
 </p>
 
 # Aplicación Demo de Machine Learning desplegada en streamlit
